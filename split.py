@@ -21,30 +21,30 @@ def main():
             img = cv2.imread(abs_name)
             file_name_after = file_name.replace("before","after")
 
-            if not os.path.exists("./cut/"):
-                os.mkdir("./cut/")
-            if not os.path.exists("./cut_repair/"_after):
-                os.mkdir("./cut_repair/"_after)
-            if not os.path.exists("./cut2/"):
-                os.mkdir("./cut2/")
-            if not os.path.exists("./cut2_repair/"_after):
-                os.mkdir("./cut2_repair/"_after)
-            if not os.path.exists("./cut_side/"):
-                os.mkdir("./cut_side/")
-            if not os.path.exists("./cut_side_repair/"_after):
-                os.mkdir("./cut_side_repair/"_after)
-            if not os.path.exists("./cut_ver/"):
-                os.mkdir("./cut_ver/")
-            if not os.path.exists("./cut_ver_repair/"):
-                os.mkdir("./cut_ver_repair/")
-            if not os.path.exists("./cut_64/"):
-                os.mkdir("./cut_64/" +  file_name_after)
-            if not os.path.exists("./cut2_64/"):
-                os.mkdir("./cut2_64/" +  file_name_after)
-            if not os.path.exists("./cut_side_64/"):
-                os.mkdir("./cut_side_64/" +  file_name_after)
-            if not os.path.exists("./cut_ver_64/"):
-                os.mkdir("./cut_ver_64/" +  file_name_after)
+            if not os.path.exists("./cut"):
+                os.mkdir("./cut")
+            if not os.path.exists("./cut_repair"):
+                os.mkdir("./cut_repair")
+            if not os.path.exists("./cut2"):
+                os.mkdir("./cut2")
+            if not os.path.exists("./cut2_repair"):
+                os.mkdir("./cut2_repair")
+            if not os.path.exists("./cut_side"):
+                os.mkdir("./cut_side")
+            if not os.path.exists("./cut_side_repair"):
+                os.mkdir("./cut_side_repair")
+            if not os.path.exists("./cut_ver"):
+                os.mkdir("./cut_ver")
+            if not os.path.exists("./cut_ver_repair"):
+                os.mkdir("./cut_ver_repair")
+            if not os.path.exists("./cut_64"):
+                os.mkdir("./cut_64")
+            if not os.path.exists("./cut2_64"):
+                os.mkdir("./cut2_64")
+            if not os.path.exists("./cut_side_64"):
+                os.mkdir("./cut_side_64")
+            if not os.path.exists("./cut_ver_64"):
+                os.mkdir("./cut_ver_64")
             if not os.path.exists("./edge"):
                 os.mkdir("./edge")
 
