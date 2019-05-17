@@ -6,7 +6,7 @@ from PIL import Image
 import glob
 import os, sys, csv
 
-"結合"
+"結合しちゃう"
 
 def main():
 
