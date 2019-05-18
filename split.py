@@ -102,17 +102,20 @@ def main():
         new_img_width = 128
         split_data_list = []
         new_width = width - 480
-        new_width2 = width - 544
-        new_height2 = 1024
+        #split2では最後は切り捨てたいので割り切れるようにする
+        new_width2 = 1280
+        new_height2 = 896 #一番下はheight2は考えなくて良い（分割数一個減る）
 
 
-        height_split = int((height / new_img_height)+1) #17
-        width_split = int((new_width / new_img_width)+1) #23
-        height_split2 = int(new_height2 / new_img_height) #16
-        width_split2 = int(new_width2 / new_img_width) #22
-
+        height_split = int((height / new_img_height)+1) #8.4375→9
+        width_split = int((new_width / new_img_width)+1) #11.25→12
+        #split2では最後は切り捨て
+        height_split2 = int(new_height2 / new_img_height) #8
+        width_split2 = int(new_width2 / new_img_width) #10.75→11
+        
+        #9回
         for h in range(height_split):
-            if h ==16:
+            if h ==8:
                 height_start = height - new_img_height
                 height_end = height
             else:
@@ -121,8 +124,8 @@ def main():
 
             for w in range(width_split):
                 data_list = []
-                if w == 22:
-                    width_start = 1616
+                if w == 11:
+                    width_start = 1552
                     width_end = width_start + new_img_width
                 else:
                     width_start = (w * new_img_width) + 240
@@ -144,13 +147,13 @@ def main():
 
 
         for h in range(height_split2):
-            height_start = (h * new_img_height) + 32 #64*n
+            height_start = (h * new_img_height) + 64 #64*n
             height_end = height_start + new_img_height
 
             for w in range(width_split):
                 data_list = []
-                if w == 22:
-                    width_start = 1616
+                if w == 11:
+                    width_start = 1552
                     width_end = width_start + new_img_width
                 else:
                     width_start = (w * new_img_width) + 240
@@ -167,7 +170,7 @@ def main():
 
 
         for h in range(height_split):
-            if h ==16:
+            if h ==8:
                 height_start = height - new_img_height
                 height_end = height
             else:
@@ -176,7 +179,7 @@ def main():
 
             for w in range(width_split2):
                 data_list = []
-                width_start = (w * new_img_width) + 272
+                width_start = (w * new_img_width) + 304
                 width_end = width_start + new_img_width
 
                 file_name2 = "test_" + str(h) + "_" + str(w) + ".png"
