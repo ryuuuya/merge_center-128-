@@ -31,12 +31,13 @@ def to3d(X):
     return c.transpose(3,1,2,0)
 
 def main():
+    print("predict")
 
     # load model structure
     model = model_from_json(open('./saved_model/generator_model.json').read())
 
     # load model weights
-    model.load_weights('./saved_model/generator_weights.h5', by_name=False)#64
+    model.load_weights('./saved_model/generator_weights.h5', by_name=False)#128
 
     model.summary()
 
@@ -55,7 +56,7 @@ def main():
         #print("class_path:",class_path)
         #print("img_path_list",img_path_list)
         for img_path in img_path_list:
-            img = load_img(img_path, target_size=(64,64))
+            img = load_img(img_path, target_size=(128,128))
             imgarray = img_to_array(img)
             X.append(imgarray)
 
@@ -79,9 +80,9 @@ def main():
             X_gen = to3d(X_gen)
             X_res = np.concatenate(X_gen, axis=1)
             out_name = os.path.basename(img_path_list[c])
-            print("X_res",X_res)
+            #print("X_res",X_res)
             #print(class_path_after)
-            print("predict: " + class_path_after + "/" + out_name )
+            #print("predict: " + class_path_after + "/" + out_name )
             X_res = cv2.cvtColor(X_res*255., cv2.COLOR_RGB2BGR)
             cv2.imwrite(class_path_after + '/' + out_name,X_res)
 
@@ -99,7 +100,7 @@ def main():
         #print("class_path:",class_path)
         #print("img_path_list",img_path_list)
         for img_path in img_path_list:
-            img = load_img(img_path, target_size=(64,64))
+            img = load_img(img_path, target_size=(128,128))
             imgarray = img_to_array(img)
             X.append(imgarray)
 
@@ -123,9 +124,9 @@ def main():
             X_gen = to3d(X_gen)
             X_res = np.concatenate(X_gen, axis=1)
             out_name = os.path.basename(img_path_list[c])
-            print("X_res",X_res)
+            #print("X_res",X_res)
             #print(class_path_after)
-            print("predict: " + class_path_after + "/" + out_name )
+            #print("predict: " + class_path_after + "/" + out_name )
             X_res = cv2.cvtColor(X_res*255., cv2.COLOR_RGB2BGR)
             cv2.imwrite(class_path_after + '/' + out_name,X_res)
 
@@ -143,7 +144,7 @@ def main():
         #print("class_path:",class_path)
         #print("img_path_list",img_path_list)
         for img_path in img_path_list:
-            img = load_img(img_path, target_size=(64,64))
+            img = load_img(img_path, target_size=(128,128))
             imgarray = img_to_array(img)
             X.append(imgarray)
 
@@ -167,9 +168,9 @@ def main():
             X_gen = to3d(X_gen)
             X_res = np.concatenate(X_gen, axis=1)
             out_name = os.path.basename(img_path_list[c])
-            print("X_res",X_res)
+            #print("X_res",X_res)
             #print(class_path_after)
-            print("predict: " + class_path_after + "/" + out_name )
+            #print("predict: " + class_path_after + "/" + out_name )
             X_res = cv2.cvtColor(X_res*255., cv2.COLOR_RGB2BGR)
             cv2.imwrite(class_path_after + '/' + out_name,X_res)
 
@@ -187,7 +188,7 @@ def main():
         #print("class_path:",class_path)
         #print("img_path_list",img_path_list)
         for img_path in img_path_list:
-            img = load_img(img_path, target_size=(64,64))
+            img = load_img(img_path, target_size=(128,128))
             imgarray = img_to_array(img)
             X.append(imgarray)
 
@@ -211,9 +212,9 @@ def main():
             X_gen = to3d(X_gen)
             X_res = np.concatenate(X_gen, axis=1)
             out_name = os.path.basename(img_path_list[c])
-            print("X_res",X_res)
+            #print("X_res",X_res)
             #print(class_path_after)
-            print("predict: " + class_path_after + "/" + out_name )
+            #print("predict: " + class_path_after + "/" + out_name )
             X_res = cv2.cvtColor(X_res*255., cv2.COLOR_RGB2BGR)
             cv2.imwrite(class_path_after + '/' + out_name,X_res)
 
