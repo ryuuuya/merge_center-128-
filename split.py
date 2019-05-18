@@ -110,8 +110,8 @@ def main():
         height_split = int((height / new_img_height)+1) #8.4375→9
         width_split = int((new_width / new_img_width)+1) #11.25→12
         #split2では最後は切り捨て
-        height_split2 = int(new_height2 / new_img_height) #8
-        width_split2 = int(new_width2 / new_img_width) #10.75→11
+        height_split2 = int(new_height2 / new_img_height) #7
+        width_split2 = int(new_width2 / new_img_width) #10
         
         #9回
         for h in range(height_split):
