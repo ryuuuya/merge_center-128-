@@ -31,59 +31,60 @@ def main():
 
             if ext == '.png' or '.jpeg' or '.jpg':
 
-                if int(n+8) % 23 == 0:#一番右(x_23)の処理
-                    if int(n) in range(23):#一列目の処理
+                if int(n+9) % 12 == 0:#一番右(x_23)の処理 #_付きの番号のため順番がおかしい
+                    #一番右は横幅32だけ欲しい
+                    if int(n) in range(12):#一列目の処理
                         image = cv2.imread(img_path)
-                        image = image[0:48,48:64]
-                        outputs_path = img_path.replace("repair","32")
+                        image = image[0:96,96:128]#一列目は高さ96
+                        outputs_path = img_path.replace("repair","64")
                         cv2.imwrite(outputs_path,image)
-                    elif 161 <= int(n) <=183:
+                    elif 96 <= int(n) <=107:#最後の一列は高さ56欲しい
                         image = cv2.imread(img_path)
-                        image = image[24:64,48:64]
-                        outputs_path = img_path.replace("repair","32")
-                        cv2.imwrite(outputs_path,image)
-                    else:
-                        image = cv2.imread(img_path)
-                        image = image[16:48,48:64]
-                        outputs_path = img_path.replace("repair","32")
-                        cv2.imwrite(outputs_path,image)
-                elif int(n+23) % 23 == 0:#一番左の処理
-                    if int(n) in range(23):#一列目の処理
-                        image = cv2.imread(img_path)
-                        image = image[0:48,0:48]
-                        outputs_path = img_path.replace("repair","32")
-                        cv2.imwrite(outputs_path,image)
-                    elif 161 <= int(n) <=183:
-                        image = cv2.imread(img_path)
-                        image = image[24:64,0:48]
-                        outputs_path = img_path.replace("repair","32")
+                        image = image[72:128,96:128]
+                        outputs_path = img_path.replace("repair","64")
                         cv2.imwrite(outputs_path,image)
                     else:
                         image = cv2.imread(img_path)
-                        image = image[16:48,0:48]
-                        outputs_path = img_path.replace("repair","32")
+                        image = image[32:96,96:128]
+                        outputs_path = img_path.replace("repair","64")
+                        cv2.imwrite(outputs_path,image)
+                elif int(n+12) % 12 == 0:#一番左の処理
+                    if int(n) in range(12):#一列目の処理
+                        image = cv2.imread(img_path)
+                        image = image[0:96,0:96]
+                        outputs_path = img_path.replace("repair","64")
+                        cv2.imwrite(outputs_path,image)
+                    elif 96 <= int(n) <=107:
+                        image = cv2.imread(img_path)
+                        image = image[72:128,0:96]
+                        outputs_path = img_path.replace("repair","64")
+                        cv2.imwrite(outputs_path,image)
+                    else:
+                        image = cv2.imread(img_path)
+                        image = image[32:96,0:96]
+                        outputs_path = img_path.replace("repair","64")
                         cv2.imwrite(outputs_path,image)
                 else:
-                    if int(n) in range(23):#一列目の処理
+                    if int(n) in range(12):#一列目の処理
                         image = cv2.imread(img_path)
-                        image = image[0:48,16:48]
-                        outputs_path = img_path.replace("repair","32")
+                        image = image[0:96,32:96]
+                        outputs_path = img_path.replace("repair","64")
                         cv2.imwrite(outputs_path,image)
-                    elif 161 <= int(n) <=183:
+                    elif 96 <= int(n) <=107:
                         image = cv2.imread(img_path)
-                        image = image[24:64,16:48]
-                        outputs_path = img_path.replace("repair","32")
+                        image = image[72:128,32:96]
+                        outputs_path = img_path.replace("repair","64")
                         cv2.imwrite(outputs_path,image)
                     else:
                         image = cv2.imread(img_path)
-                        image = image[16:48,16:48]
-                        outputs_path = img_path.replace("repair","32")
+                        image = image[32:96,32:96]
+                        outputs_path = img_path.replace("repair","64")
                         cv2.imwrite(outputs_path,image)
                 print(n)
                 print(img_path)
                 n+=1
 
-                if int(n) == 391:
+                if int(n) == 108:
                     n =0
 
     for class_path in class_path_list2:
@@ -95,8 +96,8 @@ def main():
 
             if ext == '.png' or '.jpeg' or '.jpg':
                 image = cv2.imread(img_path)
-                image = image[16:48,16:48]
-                outputs_path = img_path.replace("repair","32")
+                image = image[32:96,32:96]
+                outputs_path = img_path.replace("repair","64")
                 cv2.imwrite(outputs_path,image)
 
 
@@ -108,25 +109,25 @@ def main():
             root,ext = os.path.splitext(img_path)
 
             if ext == '.png' or '.jpeg' or '.jpg':
-                if int(s) in range(22):
+                if int(s) in range(10):#一列目の処理
                     image = cv2.imread(img_path)
-                    image = image[0:48,16:48]
-                    outputs_path = img_path.replace("repair","32")
+                    image = image[0:96,32:96]
+                    outputs_path = img_path.replace("repair","64")
                     cv2.imwrite(outputs_path,image)
-                elif 154 <= int(s) <=175:
+                elif 80 <= int(s) <=89:#最後の列の処理
                     image = cv2.imread(img_path)
-                    image = image[24:64,16:48]
-                    outputs_path = img_path.replace("repair","32")
+                    image = image[72:128,32:96]
+                    outputs_path = img_path.replace("repair","64")
                     cv2.imwrite(outputs_path,image)
                 else:
                     image = cv2.imread(img_path)
-                    image = image[16:48,16:48]
-                    outputs_path = img_path.replace("repair","32")
+                    image = image[32:96,32:96]
+                    outputs_path = img_path.replace("repair","64")
                     cv2.imwrite(outputs_path,image)
             #print(s)
             #print(img_path)
             s+=1
-            if int(s) == 374:
+            if int(s) == 90:
                 s =0
 
     for class_path in class_path_list_ver:
@@ -138,25 +139,25 @@ def main():
             root,ext = os.path.splitext(img_path)
             if ext == '.png' or '.jpeg' or '.jpg':
 
-                if int(v+8) % 23 == 0:
+                if int(v+9) % 12 == 0:#一番右
                     image = cv2.imread(img_path)
-                    image = image[16:48,48:64]
-                    outputs_path = img_path.replace("repair","32")
+                    image = image[32:96,96:128]
+                    outputs_path = img_path.replace("repair","64")
                     cv2.imwrite(outputs_path,image)
-                elif int(v+23) % 23 == 0:
+                elif int(v+12) % 12 == 0:#一番左
                     image = cv2.imread(img_path)
-                    image = image[16:48,0:48]
-                    outputs_path = img_path.replace("repair","32")
+                    image = image[32:96,0:96]
+                    outputs_path = img_path.replace("repair","64")
                     cv2.imwrite(outputs_path,image)
                 else:
                     image = cv2.imread(img_path)
-                    image = image[16:48,16:48]
-                    outputs_path = img_path.replace("repair","32")
+                    image = image[32:96,32:96]
+                    outputs_path = img_path.replace("repair","64")
                     cv2.imwrite(outputs_path,image)
             #print(v)
             #print(img_path)
             v+=1
-            if int(v) == 368:
+            if int(v) == 84:
                 v =0
 
 if __name__ == '__main__':

@@ -84,7 +84,7 @@ def main():
             writer = csv.writer(f)
             writer.writerow(['image_name', 'h', 'w'])
 
-        img_edge = img[0:1080,0:256]
+        img_edge = img[0:1080,0:240]
         cv2.imwrite("./edge/edge.png", img_edge)
         """
         img_above = img[0:16,256:1664]
@@ -102,34 +102,24 @@ def main():
         new_img_width = 128
         split_data_list = []
         new_width = width - 480
-        #split2では最後は切り捨てたいので割り切れるようにする
-        new_width2 = 1280
-        new_height2 = 896 #一番下はheight2は考えなくて良い（分割数一個減る）
+        new_width2 = 1376 
+        new_height2 = 1016 #一番下はheight2は考えなくて良い（分割数一個減る）
 
 
-        height_split = int((height / new_img_height)+1) #8.4375→9
-        width_split = int((new_width / new_img_width)+1) #11.25→12
-        #split2では最後は切り捨て
-        height_split2 = int(new_height2 / new_img_height) #7
-        width_split2 = int(new_width2 / new_img_width) #10
+        height_split = int(8) #8.4375→8
+        width_split = int(11) #11.25→11
+        height_split2 = int((new_height2 / new_img_height)+1) #7.9375→8
+        width_split2 = int((new_width2 / new_img_width)+1) #10.75→11
         
         #9回
         for h in range(height_split):
-            if h ==8:
-                height_start = height - new_img_height
-                height_end = height
-            else:
-                height_start = h * new_img_height #64*n
-                height_end = height_start + new_img_height
+            height_start = h * new_img_height #64*n
+            height_end = height_start + new_img_height
 
             for w in range(width_split):
                 data_list = []
-                if w == 11:
-                    width_start = 1552
-                    width_end = width_start + new_img_width
-                else:
-                    width_start = (w * new_img_width) + 240
-                    width_end = width_start + new_img_width
+                width_start = (w * new_img_width) + 240
+                width_end = width_start + new_img_width
 
                 file_name2 = "test_" + str(h) + "_" + str(w) + ".png"
                 clp = img[height_start:height_end, width_start:width_end]
@@ -147,17 +137,17 @@ def main():
 
 
         for h in range(height_split2):
-            height_start = (h * new_img_height) + 64 #64*n
-            height_end = height_start + new_img_height
+            if h ==7:
+                height_start = height - new_img_height
+                height_end = height
+            else:
+                height_start = (h * new_img_height) + 64 #64*n
+                height_end = height_start + new_img_height
 
             for w in range(width_split):
                 data_list = []
-                if w == 11:
-                    width_start = 1552
-                    width_end = width_start + new_img_width
-                else:
-                    width_start = (w * new_img_width) + 240
-                    width_end = width_start + new_img_width
+                width_start = (w * new_img_width) + 240
+                width_end = width_start + new_img_width
 
                 file_name2 = "test_" + str(h) + "_" + str(w) + ".png"
                 clp = img[height_start:height_end, width_start:width_end]
@@ -170,17 +160,17 @@ def main():
 
 
         for h in range(height_split):
-            if h ==8:
-                height_start = height - new_img_height
-                height_end = height
-            else:
-                height_start = h * new_img_height #64*n
-                height_end = height_start + new_img_height
+            height_start = h * new_img_height #64*n
+            height_end = height_start + new_img_height
 
             for w in range(width_split2):
                 data_list = []
-                width_start = (w * new_img_width) + 304
-                width_end = width_start + new_img_width
+                if w == 10:
+                    width_start = 1552
+                    width_end = width_start + new_img_width
+                else:
+                    width_start = (w * new_img_width) + 304
+                    width_end = width_start + new_img_width
 
                 file_name2 = "test_" + str(h) + "_" + str(w) + ".png"
                 clp = img[height_start:height_end, width_start:width_end]
@@ -192,13 +182,21 @@ def main():
                 split_data_list.append(data_list)
 
         for h in range(height_split2):
-            height_start = (h * new_img_height) + 32 #64*n
-            height_end = height_start + new_img_height
+            if h ==7:
+                height_start = height - new_img_height
+                height_end = height
+            else:
+                height_start = (h * new_img_height) + 64 #64*n
+                height_end = height_start + new_img_height
 
             for w in range(width_split2):
                 data_list = []
-                width_start = (w * new_img_width) + 272
-                width_end = width_start + new_img_width
+                if w == 10:
+                    width_start = 1552
+                    width_end = width_start + new_img_width
+                else:
+                    width_start = (w * new_img_width) + 304
+                    width_end = width_start + new_img_width
 
                 file_name2 = "test_" + str(h) + "_" + str(w) + ".png"
                 clp = img[height_start:height_end, width_start:width_end]

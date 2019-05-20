@@ -21,6 +21,35 @@ def main():
             img = cv2.imread(abs_name)
             file_name_after = file_name.replace("before","after")
 
+            if not os.path.exists("./cut"):
+                os.mkdir("./cut")
+            if not os.path.exists("./cut_repair"):
+                os.mkdir("./cut_repair")
+            if not os.path.exists("./cut2"):
+                os.mkdir("./cut2")
+            if not os.path.exists("./cut2_repair"):
+                os.mkdir("./cut2_repair")
+            if not os.path.exists("./cut_side"):
+                os.mkdir("./cut_side")
+            if not os.path.exists("./cut_side_repair"):
+                os.mkdir("./cut_side_repair")
+            if not os.path.exists("./cut_ver"):
+                os.mkdir("./cut_ver")
+            if not os.path.exists("./cut_ver_repair"):
+                os.mkdir("./cut_ver_repair")
+            if not os.path.exists("./cut_64"):
+                os.mkdir("./cut_64")
+            if not os.path.exists("./cut2_64"):
+                os.mkdir("./cut2_64")
+            if not os.path.exists("./cut_side_64"):
+                os.mkdir("./cut_side_64")
+            if not os.path.exists("./cut_ver_64"):
+                os.mkdir("./cut_ver_64")
+            if not os.path.exists("./edge"):
+                os.mkdir("./edge")
+
+
+
             if not os.path.exists("./cut/" + file_name):
                 os.mkdir("./cut/" + file_name)
             if not os.path.exists("./cut_repair/" + file_name_after):
@@ -37,18 +66,18 @@ def main():
                 os.mkdir("./cut_ver/" + file_name)
             if not os.path.exists("./cut_ver_repair/" + file_name_after):
                 os.mkdir("./cut_ver_repair/" + file_name_after)
-            if not os.path.exists("./cut_32/" + file_name_after):
-                os.mkdir("./cut_32/" +  file_name_after)
-            if not os.path.exists("./cut2_32/" + file_name_after):
-                os.mkdir("./cut2_32/" +  file_name_after)
-            if not os.path.exists("./cut_side_32/" + file_name_after):
-                os.mkdir("./cut_side_32/" +  file_name_after)
-            if not os.path.exists("./cut_ver_32/" + file_name_after):
-                os.mkdir("./cut_ver_32/" +  file_name_after)
+            if not os.path.exists("./cut_64/" + file_name_after):
+                os.mkdir("./cut_64/" +  file_name_after)
+            if not os.path.exists("./cut2_64/" + file_name_after):
+                os.mkdir("./cut2_64/" +  file_name_after)
+            if not os.path.exists("./cut_side_64/" + file_name_after):
+                os.mkdir("./cut_side_64/" +  file_name_after)
+            if not os.path.exists("./cut_ver_64/" + file_name_after):
+                os.mkdir("./cut_ver_64/" +  file_name_after)
             if not os.path.exists("./edge"):
                 os.mkdir("./edge")
-            if not os.path.exists("./parts/" + file_name):
-                os.mkdir("./parts/" + file_name)
+            #if not os.path.exists("./parts/" + file_name):
+                #os.mkdir("./parts/" + file_name)
 #            os.mkdir("./分割/" + file_name)
         height, width, channels = img.shape
         with open('./split_data.csv', 'w') as f:
@@ -69,21 +98,24 @@ def main():
         """
 
 #30,16.875,new_img_width,new_img_height:64*64にしたい
-        new_img_height = 64
-        new_img_width = 64
+        new_img_height = 128
+        new_img_width = 128
         split_data_list = []
         new_width = width - 480
-        new_width2 = width - 512
-        new_height2 = 1024
+        #split2では最後は切り捨てたいので割り切れるようにする
+        new_width2 = 1280
+        new_height2 = 896 #一番下はheight2は考えなくて良い（分割数一個減る）
 
 
-        height_split = int((height / new_img_height)+1) #17
-        width_split = int((new_width / new_img_width)+1) #23
-        height_split2 = int(new_height2 / new_img_height) #16
-        width_split2 = int(new_width2 / new_img_width) #22
-
+        height_split = int((height / new_img_height)+1) #8.4375→9
+        width_split = int((new_width / new_img_width)+1) #11.25→12
+        #split2では最後は切り捨て
+        height_split2 = int(new_height2 / new_img_height) #7
+        width_split2 = int(new_width2 / new_img_width) #10
+        
+        #9回
         for h in range(height_split):
-            if h ==16:
+            if h ==8:
                 height_start = height - new_img_height
                 height_end = height
             else:
@@ -92,8 +124,8 @@ def main():
 
             for w in range(width_split):
                 data_list = []
-                if w == 22:
-                    width_start = 1616
+                if w == 11:
+                    width_start = 1552
                     width_end = width_start + new_img_width
                 else:
                     width_start = (w * new_img_width) + 240
@@ -115,13 +147,13 @@ def main():
 
 
         for h in range(height_split2):
-            height_start = (h * new_img_height) + 32 #64*n
+            height_start = (h * new_img_height) + 64 #64*n
             height_end = height_start + new_img_height
 
             for w in range(width_split):
                 data_list = []
-                if w == 22:
-                    width_start = 1616
+                if w == 11:
+                    width_start = 1552
                     width_end = width_start + new_img_width
                 else:
                     width_start = (w * new_img_width) + 240
@@ -138,7 +170,7 @@ def main():
 
 
         for h in range(height_split):
-            if h ==16:
+            if h ==8:
                 height_start = height - new_img_height
                 height_end = height
             else:
@@ -147,7 +179,7 @@ def main():
 
             for w in range(width_split2):
                 data_list = []
-                width_start = (w * new_img_width) + 272
+                width_start = (w * new_img_width) + 304
                 width_end = width_start + new_img_width
 
                 file_name2 = "test_" + str(h) + "_" + str(w) + ".png"
